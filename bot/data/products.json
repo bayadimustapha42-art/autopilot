@@ -1,0 +1,15 @@
+{
+  "products": [
+    {
+      "id": "budget-bundle",
+      "name": "Budget Tracker Bundle",
+      "price": 12,
+      "priceSale": 9,
+      "files": ["Budget mensuel (Google Sheets)", "Sinking Funds tracker", "Suivi de dettes (snowball)"],
+      "platform": "Etsy",
+      "keywords": ["budget tracker", "budget spreadsheet", "google sheets budget", "sinking funds", "monthly budget", "debt payoff planner", "finance template", "money tracker", "budget planner", "savings tracker", "budget template", "personal finance", "expense tracker"],
+      "pain": "Fins de mois difficiles, aucune visibilité sur les dépenses, templates gratuits qui se cassent",
+      "cta": "Téléchargement instantané : ouvrez dans Google Sheets (gratuit), les totaux se calculent seuls"
+    }
+  ]
+}

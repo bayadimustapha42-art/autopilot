@@ -1,0 +1,9 @@
+# Dossier réservé à l'application (pas à pousser)
+.freebuff/
+
+# Node
+node_modules/
+*.log
+
+# Secrets (ne jamais commiter)
+.env

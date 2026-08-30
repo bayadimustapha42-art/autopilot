@@ -1,0 +1,15 @@
+{
+  "ideas": [
+    { "id": "budget-simple", "name": "Budget mensuel simple (fichier unique)", "demande": 8, "concurrence": 6, "marge": 9, "viral": 4, "facilite": 8, "risque": 7, "automatisation": 8 },
+    { "id": "sinking-funds", "name": "Sinking Funds tracker", "demande": 7, "concurrence": 6, "marge": 9, "viral": 5, "facilite": 9, "risque": 7, "automatisation": 8 },
+    { "id": "dettes-snowball", "name": "Suivi de dettes (methode snowball)", "demande": 7, "concurrence": 6, "marge": 9, "viral": 6, "facilite": 9, "risque": 7, "automatisation": 8 },
+    { "id": "regle-50-30-20", "name": "Template budget 50/30/20", "demande": 7, "concurrence": 7, "marge": 9, "viral": 6, "facilite": 9, "risque": 6, "automatisation": 8 },
+    { "id": "fonds-urgence", "name": "Fonds d'urgence tracker", "demande": 6, "concurrence": 7, "marge": 9, "viral": 5, "facilite": 9, "risque": 6, "automatisation": 8 },
+    { "id": "budget-famille", "name": "Budget de famille (enveloppes)", "demande": 7, "concurrence": 6, "marge": 9, "viral": 5, "facilite": 8, "risque": 6, "automatisation": 8 },
+    { "id": "challenge-52", "name": "Challenge epargne 52 semaines", "demande": 6, "concurrence": 7, "marge": 9, "viral": 8, "facilite": 9, "risque": 6, "automatisation": 8 },
+    { "id": "budget-freelance", "name": "Budget freelance / independant", "demande": 7, "concurrence": 5, "marge": 9, "viral": 4, "facilite": 8, "risque": 7, "automatisation": 8 },
+    { "id": "planners-a5", "name": "Planners imprimables A5", "demande": 8, "concurrence": 7, "marge": 9, "viral": 5, "facilite": 7, "risque": 6, "automatisation": 8 },
+    { "id": "notion-finances", "name": "Templates Notion finances", "demande": 7, "concurrence": 7, "marge": 9, "viral": 6, "facilite": 5, "risque": 7, "automatisation": 8 },
+    { "id": "recettes-budget", "name": "Carnet recettes + budget courses", "demande": 6, "concurrence": 6, "marge": 8, "viral": 4, "facilite": 8, "risque": 6, "automatisation": 7 }
+  ]
+}

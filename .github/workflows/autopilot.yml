@@ -1,0 +1,25 @@
+name: Autopilot Bot
+on:
+  schedule:
+    - cron: "0 7 * * *"   # chaque jour a 7h00 UTC
+  workflow_dispatch:       # bouton "Run workflow" manuel
+
+permissions:
+  contents: write
+
+jobs:
+  autopilot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Generer le lot du jour
+        run: cd bot && node run.js
+      - name: Commiter le contenu genere
+        run: |
+          git config user.name "autopilot-bot"
+          git config user.email "autopilot@users.noreply.github.com"
+          git add bot/output bot/data
+          if git diff --cached --quiet; then echo "Rien de nouveau"; else git commit -m "contenu quotidien $(date +%F)" && git push; fi

@@ -1,0 +1,11 @@
+{
+  "name": "autopilot-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bot autopilote 0 euro : contenu quotidien, scoring d'idees produits, rapport hebdomadaire",
+  "scripts": {
+    "run": "node run.js",
+    "demo": "node run.js --demo",
+    "report": "node run.js --report"
+  }
+}
