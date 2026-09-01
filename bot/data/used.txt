@@ -2,3 +2,4 @@ regle-50-30-20
 challenge-52
 dettes-snowball
 budget-simple
+sinking-funds
