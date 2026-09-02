@@ -3,3 +3,4 @@ challenge-52
 dettes-snowball
 budget-simple
 sinking-funds
+planners-a5
