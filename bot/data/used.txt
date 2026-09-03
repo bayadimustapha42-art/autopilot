@@ -4,3 +4,4 @@ dettes-snowball
 budget-simple
 sinking-funds
 planners-a5
+fonds-urgence
