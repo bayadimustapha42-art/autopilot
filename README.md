@@ -8,11 +8,24 @@ Bot d'automatisation pour vendre des produits digitaux sur Etsy avec **0 € de 
 - **Chaque dimanche** : rapport de ventes, frais, bénéfice net, conversion, produit gagnant, décisions CONTINUER / AMÉLIORER / ARRÊTER / TESTER + dashboard HTML
 - **Sans toi** : le workflow GitHub Actions (`autopilot.yml`) s'exécute chaque jour à 7h00 UTC et commit le contenu généré tout seul
 
-## Démarrage
+## Démarrage du bot
 
 1. `cd bot && node run.js --demo` → génère un exemple dans `bot/output/`
 2. `node chat.js` → mode conversation (commandes : `epingles`, `script`, `annonce`, `idee`, `rapport`, `ventes`, `aide`)
 3. Le bot tourne en continu sur GitHub Actions (voir `bot/INSTALL.md`)
+
+## SaaS local : Autopilot Studio
+
+Une interface web complète est disponible dans `studio/` :
+
+```powershell
+cd studio
+node server.js
+```
+
+Puis ouvre **http://127.0.0.1:3030**. Elle permet de scorer les idées, générer les packs de contenu, enregistrer les campagnes et obtenir les décisions automatiques. Aucun abonnement ni clé API n'est requis.
+
+Test rapide : `cd studio && node smoke.js`. Documentation détaillée : [`studio/README.md`](studio/README.md).
 
 ## Description du projet
 

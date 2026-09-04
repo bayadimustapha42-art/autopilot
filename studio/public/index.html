@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#09111f">
+  <title>Autopilot Studio</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#dashboard"><span class="brand-mark">✦</span><span><strong>Autopilot</strong><small>Studio</small></span></a>
+      <nav class="nav" aria-label="Navigation principale">
+        <button class="nav-item active" data-view="dashboard"><span>⌂</span> Vue d'ensemble</button>
+        <button class="nav-item" data-view="opportunities"><span>◈</span> Opportunités</button>
+        <button class="nav-item" data-view="studio"><span>✎</span> Content studio</button>
+        <button class="nav-item" data-view="campaigns"><span>◒</span> Campagnes</button>
+        <button class="nav-item" data-view="settings"><span>⚙</span> Réglages</button>
+      </nav>
+      <div class="sidebar-note"><span class="pulse"></span><div><strong>Mode local actif</strong><small>Aucune clé API requise</small></div></div>
+      <div class="side-footer">Autopilot Studio<br><span>v1.0 · données privées</span></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div class="mobile-brand"><span class="brand-mark">✦</span> Autopilot Studio</div><div class="top-actions"><span id="last-sync">Chargement…</span><button class="icon-btn" id="refresh" title="Actualiser">↻</button></div></header>
+      <div id="toast" class="toast" role="status"></div>
+      <section id="dashboard" class="view active-view"></section>
+      <section id="opportunities" class="view"></section>
+      <section id="studio" class="view"></section>
+      <section id="campaigns" class="view"></section>
+      <section id="settings" class="view"></section>
+    </main>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
