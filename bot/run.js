@@ -15,26 +15,32 @@ const scoring = require("./lib/scoring");
 const DATA = path.join(__dirname, "data");
 const OUT = path.join(__dirname, "output");
 
-function loadJSON(f) { return JSON.parse(fs.readFileSync(path.join(DATA, f), "utf8")); }
+function loadJSON(f) {
+  const file = path.join(DATA, f);
+  try { return JSON.parse(fs.readFileSync(file, "utf8")); }
+  catch (error) { throw new Error("Données invalides dans " + f + " : " + error.message); }
+}
 
 function pad(n) { return n < 10 ? "0" + n : "" + n; }
 function stamp(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
 
 function usedIds() {
   const f = path.join(DATA, "used.txt");
-  return fs.existsSync(f) ? fs.readFileSync(f, "utf8").split("\n").filter(Boolean) : [];
+  return fs.existsSync(f) ? fs.readFileSync(f, "utf8").split(/\r?\n/).map(id => id.trim()).filter(Boolean) : [];
 }
 
 /* Prochaine idee produit recommandee (score >= 70, non deja proposee). */
 function nextProduct() {
-  const ideas = scoring.best(loadJSON("ideas.json").ideas, 70);
+  const ideaData = loadJSON("ideas.json");
+  const ideas = scoring.best(ideaData && Array.isArray(ideaData.ideas) ? ideaData.ideas : [], 70);
   const used = usedIds();
   return ideas.find(i => used.indexOf(i.id) === -1) || ideas[0];
 }
 
 function batch() {
-  const products = loadJSON("products.json").products;
-  const product = products[0] || { name: "Produit à définir", price: 0, priceSale: 0, keywords: [], cta: "" };
+  const productData = loadJSON("products.json");
+  const products = productData && Array.isArray(productData.products) ? productData.products : [];
+  const product = products[0] || { name: "Produit à définir", price: 0, priceSale: 0, keywords: [], files: [], cta: "" };
   const today = stamp(new Date());
   const dir = path.join(OUT, today);
   fs.mkdirSync(dir, { recursive: true });

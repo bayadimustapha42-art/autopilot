@@ -14,15 +14,21 @@ const W = {
 };
 
 function scoreIdea(idea) {
+  idea = idea && typeof idea === "object" ? idea : {};
   let t = 0;
-  for (const k in W) t += (Number(idea[k]) || 0) * W[k];
+  for (const k in W) {
+    const raw = Math.max(0, Math.min(10, Number(idea[k]) || 0));
+    t += raw * W[k];
+  }
   idea.score = Math.round(t * 10);
   return idea;
 }
 
 /* Retourne les idees >= seuil, triees de la meilleure a la moins bonne. */
 function best(ideas, seuil) {
-  return ideas.map(scoreIdea).filter(i => i.score >= seuil)
+  const list = Array.isArray(ideas) ? ideas : [];
+  const minimum = Number.isFinite(Number(seuil)) ? Number(seuil) : 0;
+  return list.filter(i => i && typeof i === "object").map(scoreIdea).filter(i => i.score >= minimum)
     .sort((a, b) => b.score - a.score);
 }
 

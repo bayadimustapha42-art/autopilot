@@ -32,7 +32,7 @@ cd studio
 node smoke.js
 ```
 
-Le test vérifie la santé de l'API, les idées, les produits, le pack de contenu et le cycle création/mise à jour d'une campagne. Il supprime ensuite sa donnée de test.
+Le test vérifie la santé de l'API, les pages statiques, les validations, les idées, les produits, le pack de contenu et le cycle création/mise à jour d'une campagne. Il supprime ensuite sa donnée de test.
 
 ## API locale
 

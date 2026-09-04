@@ -11,15 +11,23 @@ const report = require("./lib/report");
 const scoring = require("./lib/scoring");
 
 const DATA = path.join(__dirname, "data");
-function loadJSON(f) { return JSON.parse(fs.readFileSync(path.join(DATA, f), "utf8")); }
-function product() { return loadJSON("products.json").products[0]; }
+function loadJSON(f) {
+  const file = path.join(DATA, f);
+  try { return JSON.parse(fs.readFileSync(file, "utf8")); }
+  catch (error) { throw new Error("Données invalides dans " + f + " : " + error.message); }
+}
+function product() {
+  const list = loadJSON("products.json").products;
+  return Array.isArray(list) && list[0] ? list[0] : { name: "Produit à définir", price: 0, priceSale: 0, keywords: [], files: [], cta: "" };
+}
 
 function usedIds() {
   const f = path.join(DATA, "used.txt");
-  return fs.existsSync(f) ? fs.readFileSync(f, "utf8").split("\n").filter(Boolean) : [];
+  return fs.existsSync(f) ? fs.readFileSync(f, "utf8").split(/\r?\n/).map(id => id.trim()).filter(Boolean) : [];
 }
 function nextIdea() {
-  const ideas = scoring.best(loadJSON("ideas.json").ideas, 70);
+  const data = loadJSON("ideas.json");
+  const ideas = scoring.best(data && Array.isArray(data.ideas) ? data.ideas : [], 70);
   const used = usedIds();
   return ideas.find(i => used.indexOf(i.id) === -1) || ideas[0];
 }

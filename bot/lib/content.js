@@ -25,14 +25,17 @@ const PINS = [
 ];
 
 function pins(product, n) {
+  const safeProduct = product || {};
+  const keywords = Array.isArray(safeProduct.keywords) ? safeProduct.keywords : [];
   const d = dayOfYear(new Date());
   let out = "# Épingles Pinterest — " + new Date().toISOString().slice(0, 10) + "\n\n";
   for (let i = 0; i < n; i++) {
     const p = PINS[(d + i) % PINS.length];
     out += "## Pin " + (i + 1) + "\n";
     out += "**Titre :** " + p[0] + "\n";
-    out += "**Description :** " + p[1] + " (" + product.keywords[0] + ", " + product.keywords[1] + ")\n";
-    out += "**Lien :** boutique Etsy → " + product.name + "\n\n";
+    const tags = keywords.slice(0, 2).join(", ");
+    out += "**Description :** " + p[1] + (tags ? " (" + tags + ")" : "") + "\n";
+    out += "**Lien :** boutique Etsy → " + (safeProduct.name || "Produit") + "\n\n";
   }
   return out;
 }
@@ -67,6 +70,7 @@ const THEMES = [
 ];
 
 function tiktok(product) {
+  const safeProduct = product || {};
   const d = dayOfYear(new Date());
   const t = THEMES[d % THEMES.length];
   const i = d % t.hooks.length;
@@ -76,24 +80,28 @@ function tiktok(product) {
     + "**Texte à l'écran :** " + t.screens[i] + "\n"
     + "**CTA :** " + t.ctas[i] + "\n"
     + "**Hashtags :** " + t.tags.join(" ") + "\n"
-    + "**Description :** " + product.name + " — " + product.cta + "\n"
+    + "**Description :** " + (safeProduct.name || "Produit") + " — " + (safeProduct.cta || "Téléchargement instantané") + "\n"
     + "**Idée vidéo :** face caméra ou capture d'écran de la feuille, 15-30 s, sous-titres auto (CapCut gratuit).\n";
 }
 
 /* ---------- Annonce Etsy complete ---------- */
 function listing(product) {
-  return "# Annonce Etsy — " + product.name + "\n\n"
-    + "## Titre (≤ 140 caractères)\n" + product.keywords.slice(0, 6).join(", ") + "\n\n"
-    + "## 13 tags (≤ 20 caractères chacun)\n" + product.keywords.slice(0, 13).join(" · ") + "\n\n"
-    + "## Description (copier-coller)\n" + description(product) + "\n\n"
-    + "## Prix\n" + product.price + " $ — lancement : " + product.priceSale + " $\n";
+  const safeProduct = product || {};
+  const keywords = Array.isArray(safeProduct.keywords) ? safeProduct.keywords : [];
+  return "# Annonce Etsy — " + (safeProduct.name || "Produit") + "\n\n"
+    + "## Titre (≤ 140 caractères)\n" + keywords.slice(0, 6).join(", ") + "\n\n"
+    + "## 13 tags (≤ 20 caractères chacun)\n" + keywords.slice(0, 13).join(" · ") + "\n\n"
+    + "## Description (copier-coller)\n" + description(safeProduct) + "\n\n"
+    + "## Prix\n" + (Number(safeProduct.price) || 0) + " $ — lancement : " + (Number(safeProduct.priceSale) || 0) + " $\n";
 }
 
 function description(product) {
+  const safeProduct = product || {};
+  const files = Array.isArray(safeProduct.files) ? safeProduct.files : [];
   return "### Reprenez le contrôle de votre argent en 5 minutes par mois 💸\n"
-    + product.pain + ".\n\n"
+    + (safeProduct.pain || "Un outil simple pour mieux organiser vos finances") + ".\n\n"
     + "**CE QUE VOUS RECEVEZ (téléchargement instantané) :**\n"
-    + product.files.map(f => "- " + f).join("\n") + "\n\n"
+    + files.map(f => "- " + f).join("\n") + "\n\n"
     + "**POURQUOI LES ACHETEURS L'ADORENT :**\n"
     + "- Calculs 100 % automatiques (aucune formule à connaître)\n"
     + "- Catégories pré-remplies, entièrement personnalisables\n"
@@ -108,11 +116,12 @@ function description(product) {
 
 /* ---------- Post communautaire ---------- */
 function post(product) {
+  const safeProduct = product || {};
   return "# Post communautaire (Facebook / LinkedIn / Discord)\n\n"
     + "Quelqu'un ici a déjà regardé son compte le 25 du mois en se demandant où est passé son salaire ? 🙋\n\n"
     + "J'ai créé une feuille Google Sheets (gratuite) qui fait le calcul à ta place : budget mensuel, sinking funds et remboursement de dettes. "
     + "Tu saisis tes chiffres, tout le reste se met à jour seul.\n\n"
-    + "👉 " + product.name + " — " + product.priceSale + " $ (prix de lancement, téléchargement instantané).\n"
+    + "👉 " + (safeProduct.name || "Produit") + " — " + (Number(safeProduct.priceSale) || 0) + " $ (prix de lancement, téléchargement instantané).\n"
     + "Je réponds à toutes les questions en commentaire ou en DM.";
 }
 

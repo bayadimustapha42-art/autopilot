@@ -9,16 +9,46 @@ const DATA = path.join(__dirname, "..", "data");
 const OUT = path.join(__dirname, "..", "output");
 const CSV = path.join(DATA, "sales.csv");
 
+function finiteNumber(value) {
+  const n = Number(value);
+  return Number.isFinite(n) && n >= 0 ? n : 0;
+}
+
+function parseCsvLine(line) {
+  const values = [];
+  let value = "";
+  let quoted = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (ch === '"') {
+      if (quoted && line[i + 1] === '"') { value += '"'; i++; }
+      else quoted = !quoted;
+    } else if (ch === "," && !quoted) {
+      values.push(value.trim());
+      value = "";
+    } else value += ch;
+  }
+  values.push(value.trim());
+  return values;
+}
+
+function htmlEscape(value) {
+  return String(value == null ? "" : value).replace(/[&<>"']/g, ch => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+  }[ch]));
+}
+
 function readSales() {
   if (!fs.existsSync(CSV)) return [];
-  return fs.readFileSync(CSV, "utf8").split("\n")
-    .filter(l => l.trim() && !l.startsWith("date"))
+  return fs.readFileSync(CSV, "utf8").split(/\r?\n/)
+    .map(l => l.trim())
+    .filter(l => l && !/^date\s*,/i.test(l.replace(/^\uFEFF/, "")))
     .map(l => {
-      const c = l.split(",");
+      const c = parseCsvLine(l);
       return {
         date: c[0] || "", produit: c[1] || "?",
-        visites: +c[2] || 0, vues: +c[3] || 0, clics: +c[4] || 0,
-        ventes: +c[5] || 0, revenu: +c[6] || 0, frais: +c[7] || 0
+        visites: finiteNumber(c[2]), vues: finiteNumber(c[3]), clics: finiteNumber(c[4]),
+        ventes: finiteNumber(c[5]), revenu: finiteNumber(c[6]), frais: finiteNumber(c[7])
       };
     });
 }
@@ -68,8 +98,8 @@ function build() {
 
 function dashboardHtml(ventes, revenu, frais, net, visites, conv, dec) {
   const rows = dec.map(d =>
-    "<tr><td>" + d.produit + "</td><td>" + d.visites + "</td><td>" + d.vues
-    + "</td><td>" + d.ventes + "</td><td class=\"d\">" + d.decision + "</td></tr>").join("");
+    "<tr><td>" + htmlEscape(d.produit) + "</td><td>" + d.visites + "</td><td>" + d.vues
+    + "</td><td>" + d.ventes + "</td><td class=\"d\">" + htmlEscape(d.decision) + "</td></tr>").join("");
   return "<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\">"
     + "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
     + "<title>Autopilot — Tableau de bord</title><style>"
