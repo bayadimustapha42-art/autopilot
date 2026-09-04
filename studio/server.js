@@ -10,7 +10,8 @@ const ROOT = __dirname;
 const PUBLIC = path.join(ROOT, "public");
 const STATE_FILE = path.join(ROOT, "data", "state.json");
 const BOT = path.join(ROOT, "..", "bot");
-const PORT = Number(process.env.PORT || 3030);
+const configuredPort = Number(process.env.PORT);
+const PORT = Number.isInteger(configuredPort) && configuredPort > 0 ? configuredPort : 3030;
 
 function readJson(file, fallback) {
   try { return JSON.parse(fs.readFileSync(file, "utf8")); }
