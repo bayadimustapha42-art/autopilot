@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bayadimustapha42-art.github.io/autopilot/sitemap.xml

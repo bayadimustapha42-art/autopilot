@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Autopilot Studio — Le cockpit IA qui gère ton business de produits numériques à 0 €</title>
+  <meta name="description" content="Autopilot Studio note vos idées de produits numériques sur 100, génère vos épingles Pinterest, scripts TikTok et annonces Etsy, puis suit vos campagnes avec des décisions automatiques : continuer, améliorer, arrêter, tester. 100 % local, sans abonnement.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Autopilot Studio">
+  <meta property="og:title" content="Autopilot Studio — Cockpit IA pour produits numériques à 0 €">
+  <meta property="og:description" content="Scoring d'idées, génération de contenu et décisions automatiques pour votre business de produits numériques. Local, gratuit, sans clé API.">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2309111f'/%3E%3Ccircle cx='50' cy='46' r='22' fill='%2334d399'/%3E%3Ctext x='50' y='56' font-size='30' text-anchor='middle' fill='%2309111f' font-family='Arial' font-weight='bold'%3E%E2%82%AC%3C/text%3E%3C/svg%3E">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Autopilot Studio",
+    "url": "https://bayadimustapha42-art.github.io/autopilot/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "description": "Cockpit local pour produits numériques : scoring d'idées sur 100, génération de packs de contenu (Pinterest, TikTok, Etsy) et suivi de campagnes avec décisions automatiques.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "featureList": [
+      "Scoring automatique d'idées produits sur 100",
+      "Génération de packs de contenu : épingles Pinterest, scripts TikTok, annonces Etsy",
+      "Suivi de campagnes : visites, clics, ventes, revenus, frais",
+      "Décisions automatiques : CONTINUER, AMÉLIORER, ARRÊTER, TESTER",
+      "Stockage local : aucune donnée envoyée en ligne"
+    ],
+    "inLanguage": "fr",
+    "author": { "@type": "Organization", "name": "Autopilot" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Autopilot Studio est-il vraiment gratuit ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Oui. L'application est 100 % gratuite et open source : aucun abonnement, aucune clé API, aucune publicité. Vous l'exécutez sur votre propre ordinateur." }
+      },
+      {
+        "@type": "Question",
+        "name": "Mes données sont-elles envoyées sur Internet ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Non. Tout fonctionne en local : le scoring, la génération de contenu et les campagnes sont stockés dans un simple fichier JSON sur votre machine." }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment fonctionne le scoring des idées ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Chaque idée est notée de 1 à 10 sur sept critères (demande, concurrence, marge, viralité, facilité, risque, automatisation), puis pondérée en un score final sur 100 pour prioriser vos produits." }
+      },
+      {
+        "@type": "Question",
+        "name": "Quel type de contenu l'outil génère-t-il ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Des packs prêts à publier : épingles Pinterest avec mots-clés, scripts TikTok/Reels/Shorts, posts communautaires et annonces Etsy complètes (titre, description, tags, prix)." }
+      }
+    ]
+  }
+  </script>
+  <style>
+    :root { color-scheme: dark; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #09111f; color: #dbe4f0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.7; }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 24px; }
+    header { border-bottom: 1px solid #1c2a42; padding: 20px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; color: #fff; font-size: 1.1rem; text-decoration: none; }
+    .brand span.mark { display: inline-flex; width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, #34d399, #0ea5e9); align-items: center; justify-content: center; color: #09111f; }
+    .hero { padding: 72px 0 48px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .18em; font-size: .78rem; color: #34d399; font-weight: 700; }
+    h1 { color: #fff; font-size: clamp(1.9rem, 4.5vw, 3rem); line-height: 1.15; margin: 14px 0 18px; }
+    .hero p.lead { font-size: 1.12rem; color: #a8b6cc; max-width: 720px; }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+    .button { display: inline-block; padding: 13px 26px; border-radius: 12px; font-weight: 700; text-decoration: none; transition: transform .15s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button.primary { background: #34d399; color: #06281c; }
+    .button.ghost { border: 1px solid #2a3b58; color: #dbe4f0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin: 40px 0; }
+    .card { background: #0f1a2e; border: 1px solid #1c2a42; border-radius: 16px; padding: 24px; }
+    .card h3 { color: #fff; margin-bottom: 8px; font-size: 1.05rem; }
+    .card p { color: #93a0b4; font-size: .95rem; }
+    .kpi { color: #34d399; font-weight: 800; font-size: 1.6rem; }
+    section h2 { color: #fff; font-size: 1.6rem; margin: 56px 0 10px; }
+    section .sub { color: #93a0b4; margin-bottom: 24px; }
+    ol.steps { counter-reset: step; list-style: none; display: grid; gap: 14px; }
+    ol.steps li { background: #0f1a2e; border: 1px solid #1c2a42; border-radius: 14px; padding: 18px 22px; display: flex; gap: 16px; align-items: flex-start; }
+    ol.steps li::before { counter-increment: step; content: counter(step); flex: 0 0 34px; height: 34px; border-radius: 10px; background: #16243c; color: #34d399; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+    details { background: #0f1a2e; border: 1px solid #1c2a42; border-radius: 12px; padding: 16px 20px; margin-bottom: 12px; }
+    summary { cursor: pointer; color: #fff; font-weight: 600; }
+    details p { color: #a8b6cc; margin-top: 10px; }
+    footer { border-top: 1px solid #1c2a42; margin-top: 72px; padding: 28px 0 44px; color: #6b7a92; font-size: .9rem; }
+    footer a { color: #7dd3fc; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a class="brand" href="./"><span class="mark">✦</span> Autopilot <strong>Studio</strong></a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <p class="eyebrow">Business automatisé · 0 € d'investissement</p>
+      <h1>Le cockpit IA qui gère ton business de produits numériques, pendant que tu vis ta vie.</h1>
+      <p class="lead">Autopilot Studio note chaque idée de produit sur 100, génère tes épingles Pinterest, tes scripts TikTok et tes annonces Etsy, puis analyse tes ventes pour te dire quoi faire : <strong>continuer, améliorer, arrêter ou tester</strong>. Tout tourne sur ton ordinateur. Rien ne sort de ta machine.</p>
+      <div class="cta-row">
+        <a class="button primary" href="https://github.com/bayadimustapha42-art/autopilot">Voir sur GitHub</a>
+        <a class="button ghost" href="#fonctionnalites">Découvrir les fonctionnalités</a>
+      </div>
+    </div>
+
+    <section id="fonctionnalites" aria-label="Fonctionnalites">
+      <h2>Tout ce qu un solo founder doit faire, automatise</h2>
+      <p class="sub">Quatre modules qui se repondent, du choix du produit jusqu a la decision de scaling.</p>
+      <div class="grid">
+        <article class="card">
+          <div class="kpi">/100</div>
+          <h3>Scoring d opportunites</h3>
+          <p>11 idees notees sur 7 criteres : demande, concurrence, marge, viralite, facilite, risque, automatisation. Le meilleur score s impose automatiquement.</p>
+        </article>
+        <article class="card">
+          <div class="kpi">x4</div>
+          <h3>Content Studio</h3>
+          <p>Un produit entre, quatre assets sortent : epingles Pinterest avec mots-cles, script TikTok/Reels/Shorts, post communautaire et annonce Etsy complete.</p>
+        </article>
+        <article class="card">
+          <div class="kpi">AI</div>
+          <h3>Suivi de campagnes</h3>
+          <p>Visites, vues, clics, ventes, revenus, frais : le tableau de bord calcule ta marge nette et ton taux de conversion en temps reel.</p>
+        </article>
+        <article class="card">
+          <div class="kpi">OK</div>
+          <h3>Decisions automatiques</h3>
+          <p>CONTINUER, AMELIORER, ARRETER, TESTER : le moteur analyse chaque campagne et te donne la prochaine action concrete, sans reflexion de ta part.</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-label="Comment ca marche">
+      <h2>Comment ca marche</h2>
+      <p class="sub">Trois etapes, zero configuration, aucune cle API.</p>
+      <ol class="steps">
+        <li><strong>Telecharge et lance.</strong> Un simple <code>node server.js</code> depuis le dossier <code>studio</code>. Aucune installation, aucune dependance.</li>
+        <li><strong>Genere ton pack.</strong> Choisis un produit, clique : epingles, script, post et annonce Etsy sont prets a publier.</li>
+        <li><strong>Enregistre tes chiffres.</strong> Le cockpit calcule ta rentabilite et decide pour toi de la suite a donner a chaque campagne.</li>
+      </ol>
+    </section>
+
+    <section aria-label="Questions frequentes">
+      <h2>Questions frequentes</h2>
+      <p class="sub">Les reponses aux questions qu on nous pose le plus.</p>
+      <details open>
+        <summary>Autopilot Studio est-il vraiment gratuit ?</summary>
+        <p>Oui, a 100 pourcent. Aucun abonnement, aucune cle API, aucune publicite. Le code est open source sur GitHub.</p>
+      </details>
+      <details>
+        <summary>Mes donnees sont-elles envoyees sur Internet ?</summary>
+        <p>Non. Tout fonctionne en local : le scoring, la generation de contenu et les campagnes sont stockes dans un simple fichier JSON sur votre machine.</p>
+      </details>
+      <details>
+        <summary>Comment fonctionne le scoring des idees ?</summary>
+        <p>Chaque idee est notee de 1 a 10 sur sept criteres (demande, concurrence, marge, viralite, facilite, risque, automatisation), puis ponderee en un score final sur 100.</p>
+      </details>
+      <details>
+        <summary>Quel contenu l outil genere-t-il ?</summary>
+        <p>Des packs prets a publier : epingles Pinterest avec mots-cles, scripts TikTok/Reels/Shorts, posts communautaires et annonces Etsy completes.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>Autopilot Studio</strong> : cockpit local pour produits numeriques. Code source, documentation et telechargement sur <a href="https://github.com/bayadimustapha42-art/autopilot">GitHub</a>. Aucun revenu n est garanti : l outil aide a decider, le travail de publication reste le votre.</p>
+    </div>
+  </footer>
+</body>
+</html>

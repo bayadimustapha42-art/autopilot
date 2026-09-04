@@ -26,6 +26,13 @@ async function run() {
   try {
     const page = await call("GET", "/");
     if (page.status !== 200 || typeof page.data !== "string" || !page.data.includes("Autopilot Studio")) throw new Error("static page check failed");
+    if (!page.data.includes('name="description"') || !page.data.includes("application/ld+json") || !page.data.includes("<noscript>")) throw new Error("SEO meta/JSON-LD/noscript check failed");
+    const robots = await call("GET", "/robots.txt");
+    if (robots.status !== 200 || !String(robots.data).includes("Sitemap:")) throw new Error("robots.txt check failed");
+    const sitemap = await call("GET", "/sitemap.xml");
+    if (sitemap.status !== 200 || !String(sitemap.data).includes("<urlset")) throw new Error("sitemap.xml check failed");
+    const icon = await call("GET", "/icon.svg");
+    if (icon.status !== 200 || !String(icon.data).includes("<svg")) throw new Error("icon.svg check failed");
     const method = await call("DELETE", "/api/health");
     if (method.status !== 404) throw new Error("method handling check failed");
     const options = await call("OPTIONS", "/api/health");

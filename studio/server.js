@@ -203,7 +203,7 @@ async function api(req, res, pathname) {
   }
 }
 
-const MIME = { ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8", ".json": "application/json; charset=utf-8", ".svg": "image/svg+xml" };
+const MIME = { ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8", ".json": "application/json; charset=utf-8", ".svg": "image/svg+xml", ".xml": "application/xml; charset=utf-8", ".txt": "text/plain; charset=utf-8", ".png": "image/png", ".ico": "image/x-icon" };
 function serve(req, res) {
   let url;
   try { url = new URL(req.url || "/", "http://localhost"); }
@@ -224,7 +224,10 @@ function serve(req, res) {
   if (relative.startsWith("..") || path.isAbsolute(relative)) return text(res, 403, "Interdit");
   fs.readFile(file, (error, data) => {
     if (error) return text(res, 404, "Page introuvable");
-    res.writeHead(200, { "Content-Type": MIME[path.extname(file)] || "application/octet-stream", "Cache-Control": "no-store" });
+    const ext = path.extname(file);
+    // HTML must always be fresh (dev + noscript fallback); immutable assets may be cached one day.
+    const cacheControl = ext === ".html" ? "no-store" : "public, max-age=86400";
+    res.writeHead(200, { "Content-Type": MIME[ext] || "application/octet-stream", "Cache-Control": cacheControl, "X-Content-Type-Options": "nosniff" });
     if (req.method !== "HEAD") res.end(data); else res.end();
   });
 }
