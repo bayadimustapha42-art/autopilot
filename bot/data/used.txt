@@ -7,3 +7,4 @@ planners-a5
 fonds-urgence
 budget-famille
 notion-finances
+budget-freelance

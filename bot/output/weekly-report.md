@@ -1,4 +1,4 @@
-# Rapport hebdomadaire — 2026-09-04
+# Rapport hebdomadaire — 2026-09-06
 
 **Ventes :** 0 · **Revenu :** 0.00 $ · **Frais :** 0.00 $ · **Net :** 0.00 $
 **Visites :** 0 · **Conversion :** —
